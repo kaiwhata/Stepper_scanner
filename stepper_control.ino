@@ -15,48 +15,60 @@ int dir_a = 12;
 int dir_b = 13;  
 
 //time step
-int dt = 380;
+int dt = 400; //default 380
 int v = 220;
 
 //Control methods
-void forward()
+
+//steps 4 times for each n
+void step_forward(int n)
 {
-  analogWrite(pwm_a, 0);  
-  analogWrite(pwm_b, 0);
-  digitalWrite(dir_a,HIGH);
-  digitalWrite(dir_b,LOW);
-  analogWrite(pwm_a, v);  
-  analogWrite(pwm_b, v);
-  delay(dt);
+  int i = 0;
+  while (i < n){
+    analogWrite(pwm_a, 0);  
+    analogWrite(pwm_b, 0);
+    digitalWrite(dir_a,HIGH);
+    digitalWrite(dir_b,LOW);
+    analogWrite(pwm_a, v);  
+    analogWrite(pwm_b, v);
+    delay(dt);
+    i++;
+    if (i>n-1){break;}
   
-  analogWrite(pwm_a, 0);  
-  analogWrite(pwm_b, 0);
-  digitalWrite(dir_a,LOW);
-  digitalWrite(dir_b,LOW);
-  analogWrite(pwm_a, v);  
-  analogWrite(pwm_b, v);
-  delay(dt);
+    analogWrite(pwm_a, 0);  
+    analogWrite(pwm_b, 0);
+    digitalWrite(dir_a,LOW);
+    digitalWrite(dir_b,LOW);
+    analogWrite(pwm_a, v);  
+    analogWrite(pwm_b, v);
+    delay(dt);
+    i++;
+    if (i>n-1){break;}
   
-  analogWrite(pwm_a, 0);  
-  analogWrite(pwm_b, 0);
-  digitalWrite(dir_a,LOW);
-  digitalWrite(dir_b,HIGH);
-  analogWrite(pwm_a, v);  
-  analogWrite(pwm_b, v);
-  delay(dt);
+    analogWrite(pwm_a, 0);  
+    analogWrite(pwm_b, 0);
+    digitalWrite(dir_a,LOW);
+    digitalWrite(dir_b,HIGH);
+    analogWrite(pwm_a, v);  
+    analogWrite(pwm_b, v);
+    delay(dt);
+    i++;
+    if (i>n-1){break;}
   
-  analogWrite(pwm_a, 0);  
-  analogWrite(pwm_b, 0);
-  digitalWrite(dir_a,HIGH);
-  digitalWrite(dir_b,HIGH);
-  analogWrite(pwm_a, v);  
-  analogWrite(pwm_b, v);
-  delay(dt);
- 
+    analogWrite(pwm_a, 0);  
+    analogWrite(pwm_b, 0);
+    digitalWrite(dir_a,HIGH);
+    digitalWrite(dir_b,HIGH);
+    analogWrite(pwm_a, v);  
+    analogWrite(pwm_b, v);
+    delay(dt); 
+    i++;}
 }
 
-void backward()
+void step_backward(int n)
 {
+  int i = 0;
+  while (i < n){
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
   digitalWrite(dir_a,HIGH);
@@ -64,6 +76,8 @@ void backward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
+  i++;
+  if (i>n){break;}
 
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
@@ -72,6 +86,8 @@ void backward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
+  i++;
+  if (i>n){break;}
 
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
@@ -80,7 +96,8 @@ void backward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
- 
+  i++;
+  if (i>n){break;}
  
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
@@ -89,7 +106,8 @@ void backward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
-  
+  i++;
+  }
 }
 
 
@@ -109,11 +127,8 @@ void setup()
 
 void loop()
 {
-   forward();   
-   forward();   
-   forward();   
-   forward();   
-   forward();   
-   forward();   
-   backward();   
+   step_forward(11);   
+   delay(500);
+   step_backward(6);  
+   delay(500); 
 }
