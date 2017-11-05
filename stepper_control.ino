@@ -21,7 +21,7 @@ int v = 220;
 //Control methods
 
 //steps 4 times for each n
-void step_forward(int n)
+void step_forward(int n, int dt)
 {
   int i = 0;
   while (i < n){
@@ -65,7 +65,7 @@ void step_forward(int n)
     i++;}
 }
 
-void step_backward(int n)
+void step_backward(int n, int dt)
 {
   int i = 0;
   while (i < n){
@@ -127,8 +127,8 @@ void setup()
 
 void loop()
 {
-   step_forward(11);   
-   delay(500);
-   step_backward(6);  
+   step_forward(11, 100);   
+   delay(500); 
+   step_backward(6, 400);  
    delay(500); 
 }
