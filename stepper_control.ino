@@ -1,7 +1,7 @@
 
-//Version: 0.1
-//Code Author: Arthur Roberts
-//Email: arthur.roberts@ecs.vuw.ac.nz
+//Version: 0.2
+//Code Author: Arthur Roberts and Elf Eldridge
+//Email: arthur.roberts@ecs.vuw.ac.nz, kaiwhata@gmail.com
 //Licence: TBC
 
 //Motor control variables
@@ -28,6 +28,7 @@ void forward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
+  
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
   digitalWrite(dir_a,LOW);
@@ -35,6 +36,7 @@ void forward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
+  
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
   digitalWrite(dir_a,LOW);
@@ -42,6 +44,7 @@ void forward()
   analogWrite(pwm_a, v);  
   analogWrite(pwm_b, v);
   delay(dt);
+  
   analogWrite(pwm_a, 0);  
   analogWrite(pwm_b, 0);
   digitalWrite(dir_a,HIGH);
