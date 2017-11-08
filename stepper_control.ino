@@ -130,9 +130,10 @@ void loop()
    delay(1000); //wait time before rotation
    int j = 0;
    while(true){
-    if (j<1){
+    if (j<1){ //ensures only turns once - could put serial commands in for repeat.
       step_forward(193, 10);   //full circle countercloickwize
       delay(1000);
+      //turns off stepper after move to get rid of irritating noise
       analogWrite(pwm_a, 0); 
       analogWrite(pwm_b, 0);
       digitalWrite(dir_a,LOW);
